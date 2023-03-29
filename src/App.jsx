@@ -83,7 +83,6 @@ if (userChoice !== null){
               key={option.id}
               disabled={disabled}
               onClick={() => {
-                reset();
                 handlePlay(option.id)}}
               title={option.name}
             >
