@@ -72,14 +72,14 @@ if (userChoice !== null){
   }
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-800 ">
-      <div className="rounded-lg p-4 bg-gray-400 ">
-        <h1 className="text-3xl mb-4 text-center font-bold">¡A jugar!</h1>
-        <div className="max-w-md mx-auto  ">
+    <div className="flex items-center justify-center h-screen bg-gray-800  ">
+      <div className=" p-4 bg-gray-400  min-w-full">
+        <h1 className="text-3xl mb-4 text-center font-bold">¡Piedra, Papel, Tijera!</h1>
+        <div className="max-w-md mx-auto ">
           <div className='flex justify-center'>
           {options.map((option) => (
             <button
-              className="rounded-full px-4 py-4 m-2 text-xl font-bold text-white bg-yellow-500 opacity-50 hover:opacity-100 content-center"
+              className={`rounded-full px-4 py-4 m-2 text-xl font-bold text-white bg-blue-500 opacity-50 enabled:hover:opacity-100 content-center ${option.id === userChoice && result === null ? "opacity-100" : "opacity-50"}`}
               key={option.id}
               disabled={disabled}
               onClick={() => {
@@ -102,7 +102,7 @@ if (userChoice !== null){
               {result === 1 && (<p className='text-xl mt-4 text-center font-bold'>✅ ¡Has ganado! ✅</p>) }
               {result === 2 && (<p className='text-xl mt-4 text-center font-bold'>❌ ¡Has perdido! ❌</p>) }
               <div className='mt-10 flex justify-center'>
-              <button className='rounded-lg bg-yellow-500 px-5 py-2 hover:bg-yellow-300' onClick={reset}>Reiniciar</button>
+              <button className='rounded-lg bg-yellow-500 px-5 py-2 hover:bg-yellow-300 font-bold' onClick={reset}>Reiniciar</button>
               </div>
             </div>
           )}
