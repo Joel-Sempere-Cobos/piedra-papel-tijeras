@@ -40,6 +40,9 @@ if (userChoice !== null){
       },[computerChoice])
 
   const handlePlay = (choice) => {
+    setComputerChoice(null)
+    setComputerMessage(null)
+    setResult(null)
     
     setDisabled(true);
     setUserChoice(choice);
@@ -60,7 +63,8 @@ if (userChoice !== null){
   };
 
   const reset = () => {
-    
+    setUserChoice(null)
+    setUserMessage(null)
     setComputerChoice(null)
     setComputerMessage(null)
     setDisabled(false)
