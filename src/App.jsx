@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 
 const options = [
-  { id: 0, name: 'Piedra', emoji: '✊', beats: [2, 3] },
+  { id: 0, name: 'Piedra', emoji: '✊', beats: [2] },
   { id: 1, name: 'Papel', emoji: '✋', beats: [0] },
-  { id: 2, name: 'Tijera', emoji: '✌️', beats: [1, 3] },
-  { id: 3, name: 'Lagarto', emoji: '🦎', beats: [1] },
-  { id: 4, name: 'Spock', emoji: '🖖', beats: [3, 0] },
+  { id: 2, name: 'Tijera', emoji: '✌️', beats: [1] },
+ 
 ];
 
 const getResult = (userChoice, computerChoice) => {
@@ -41,9 +40,10 @@ if (userChoice !== null){
       },[computerChoice])
 
   const handlePlay = (choice) => {
-    setUserChoice(choice);
+    
     setDisabled(true);
-    const randomChoice = Math.floor(Math.random() * 5);
+    setUserChoice(choice);
+    const randomChoice = Math.floor(Math.random() * 3);
     setTimeout(() => {
       setComputerChoice(randomChoice);
     }, 1500);
@@ -51,17 +51,19 @@ if (userChoice !== null){
     setTimeout(() => {
       
       setResult(getResult(choice, randomChoice));
+      setDisabled(false);
+
     }, 3000);
 
     clearTimeout()
+
   };
 
   const reset = () => {
+    
     setComputerChoice(null)
-    setUserChoice(null)
-    setDisabled(false)
     setComputerMessage(null)
-    setUserMessage(null)
+    setDisabled(false)
     setResult(null)
   }
 
@@ -69,30 +71,36 @@ if (userChoice !== null){
     <div className="flex items-center justify-center h-screen bg-gray-800 ">
       <div className="rounded-lg p-4 bg-gray-400 ">
         <h1 className="text-3xl mb-4 text-center font-bold">¡A jugar!</h1>
-        <div className="max-w-md mx-auto">
+        <div className="max-w-md mx-auto  ">
+          <div className='flex justify-center'>
           {options.map((option) => (
             <button
-              className="rounded-full px-4 py-4 m-2 text-xl font-bold text-white bg-yellow-500 opacity-50 hover:opacity-100"
+              className="rounded-full px-4 py-4 m-2 text-xl font-bold text-white bg-yellow-500 opacity-50 hover:opacity-100 content-center"
               key={option.id}
               disabled={disabled}
-              onClick={() => handlePlay(option.id)}
+              onClick={() => {
+                reset();
+                handlePlay(option.id)}}
               title={option.name}
             >
               {option.emoji}
             </button>
           ))}
+          </div>
           {userChoice !== null && (
-            <p className='text-xl mt-4'>{userMessage}</p>
+            <p className='text-xl mt-4 text-center'>{userMessage}</p>
           )}
           {userChoice !== null && (
-            <p className='text-xl mt-4'>{computerMessage}</p>
+            <p className='text-xl mt-4 text-center'>{computerMessage}</p>
           )}
           {result !== null && (
             <div className='mt-8'>
-              {result === 0 && (<p className='text-xl mt-4'>¡Es un empate!</p>) }
-              {result === 1 && (<p className='text-xl mt-4'>¡Has ganado!</p>) }
-              {result === 2 && (<p className='text-xl mt-4'>¡Has perdido!</p>) }
-              <button className='rounded-lg bg-yellow-500 ' onClick={reset}>Reiniciar</button>
+              {result === 0 && (<p className='text-xl mt-4 text-center font-bold'>🤷‍♂️ ¡Es un empate! 🤷‍♂️</p>) }
+              {result === 1 && (<p className='text-xl mt-4 text-center font-bold'>✅ ¡Has ganado! ✅</p>) }
+              {result === 2 && (<p className='text-xl mt-4 text-center font-bold'>❌ ¡Has perdido! ❌</p>) }
+              <div className='mt-10 flex justify-center'>
+              <button className='rounded-lg bg-yellow-500 px-5 py-2 hover:bg-yellow-300' onClick={reset}>Reiniciar</button>
+              </div>
             </div>
           )}
 
