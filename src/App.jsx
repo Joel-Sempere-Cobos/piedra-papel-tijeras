@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react"
+
 
 const options = [
   {id:0, name: "Piedra", emoji: "🪨", beats: [2,3]},
@@ -8,11 +10,13 @@ const options = [
 ]
 
 export default function App() {
-
+const [userChoice, setUserChoice] = useState(null)
+const [computerChoice, setComputerChoice] = useState(null)
+const [result, setResult] = useState(null)
 
   return (
       <div>
-        Hola mundo
+        Hola mundoo
     </div>
   )
 }
