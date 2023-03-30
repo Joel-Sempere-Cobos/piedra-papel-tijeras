@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import usePiedraPapelTijera from '../../customHooks/usePiedraPapelTijera.js';
 import { options } from '../../utils/piedraPapelTijeraUtils.js';
 
@@ -6,7 +5,6 @@ import { options } from '../../utils/piedraPapelTijeraUtils.js';
 export default function JuegoPiedraPapelTijera() {
   const {userChoice,
     userMessage,
-    computerChoice,
     computerMessage,
     disabled,
     result,
