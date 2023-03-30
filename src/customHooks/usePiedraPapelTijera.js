@@ -26,7 +26,7 @@ export default function usePiedraPapelTijera(options) {
 
     setDisabled(true);
     setUserChoice(choice);
-    const randomChoice = Math.floor(Math.random() * 3);
+    const randomChoice = Math.floor(Math.random() * options.length);
 
     setComputerChoice(randomChoice);
 
